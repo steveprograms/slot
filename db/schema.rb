@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005005248) do
+ActiveRecord::Schema.define(version: 20171005011725) do
 
   create_table "purchase_tokens", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171005005248) do
     t.datetime "updated_at", null: false
     t.string "key"
     t.integer "purchase_id"
+    t.boolean "redeemed", default: false
     t.index ["purchase_id"], name: "index_tokens_on_purchase_id"
   end
 
