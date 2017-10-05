@@ -10,12 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004230408) do
+ActiveRecord::Schema.define(version: 20171005005248) do
+
+  create_table "purchase_tokens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
 
   create_table "tests", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "count", default: 3
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key"
+    t.integer "purchase_id"
+    t.index ["purchase_id"], name: "index_tokens_on_purchase_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email"
   end
 
 end
